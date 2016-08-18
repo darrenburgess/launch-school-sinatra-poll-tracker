@@ -1,13 +1,15 @@
-=begin
-requirements:
-- user can sign in/out
-- entering of polls
-  - date, leader, margin, firm
-- editing of polls
-- delete polls
-- show polling average
-  - by week
-  - by two weeks
-  - by month
-  - all polling
-=end
+require "sinatra"
+require "sinatra/contrib"
+require "sinatra/reloader"
+require "yaml"
+require "bcrypt"
+require "pry"
+
+configure do
+  enable :sessions
+  set :session_secret, "super secret"
+end
+
+get "/" do
+  erb :index
+end
