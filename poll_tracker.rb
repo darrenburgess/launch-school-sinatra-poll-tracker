@@ -21,6 +21,7 @@ class Poll
   property :trump, Float
 end
 
+
 def test_database
   Poll.auto_migrate!
 
@@ -30,9 +31,13 @@ def test_database
   first_poll.save
 end
 
+test_database
+
 get "/" do
   clinton = Poll.get(1).clinton
   trump = Poll.get(1).trump
   @poll = "Clinton: #{clinton}  Trump: #{trump}"
-  erb :index
+  erb :index do
+    erb :poll_table
+  end
 end

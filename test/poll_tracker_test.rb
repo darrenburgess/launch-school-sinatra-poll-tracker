@@ -9,7 +9,7 @@ require_relative "../poll_tracker.rb"
 class CMSTest < Minitest::Test
   include Rack::Test::Methods
 
-  def App
+  def app
     Sinatra::Application
   end
 
@@ -32,5 +32,8 @@ class CMSTest < Minitest::Test
 
     assert_equal 200, last_response.status
     assert_includes last_response.body, "Poll Tracker"
+  end
+
+  def test_adds_record_to_database
   end
 end
