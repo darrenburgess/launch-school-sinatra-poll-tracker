@@ -16,7 +16,7 @@
       <td><%= poll.trump %></td>
       <td><%= poll.johnson %></td>
       <td>
-        <form action="<%= poll.id %>/delete" method="post">
+        <form action="<%= poll.id %>/destroy" method="post">
           <button name="id" value="<%= poll.id %>" type="submit">Delete</button>
         </form>
       </td>

@@ -46,7 +46,14 @@ get "/" do
   end
 end
 
-post "/:id/delete" do
+get "/new" do
+  erb :new
+end
+
+post "/new" do
+end
+
+post "/:id/destroy" do
   id = params["id"]
   poll = Poll.all( :conditions => { :id => id })
   poll.destroy
