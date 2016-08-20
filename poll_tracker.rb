@@ -28,12 +28,6 @@ end
 
 def initialize_database
   Poll.auto_upgrade!
-
-  first_poll = Poll.new
-  first_poll.dates = "Aug 14-18"
-  first_poll.clinton = 54.3
-  first_poll.trump = 48.1
-  first_poll.save
 end
 
 initialize_database
@@ -51,6 +45,27 @@ get "/new" do
 end
 
 post "/new" do
+  dates = params["dates"]
+  date_start = params["date_start"]
+  date_end = params["date_end"]
+  pollster = params["pollster"]
+  clinton = params["clinton"]
+  trump = params["trump"]
+  johnson = params["johnson"]
+
+  poll = Poll.new
+  poll.dates = dates
+  poll.date_start = date_start
+  poll.date_end = date_end
+  poll.pollster = pollster
+  poll.clinton = clinton
+  poll.trump = trump
+  poll.johnson = johnson
+
+  x = poll.save
+  binding.pry
+
+  redirect "/"
 end
 
 post "/:id/destroy" do
