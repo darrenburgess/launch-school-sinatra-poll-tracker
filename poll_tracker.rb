@@ -45,3 +45,11 @@ get "/" do
     erb :poll_table
   end
 end
+
+post "/:id/delete" do
+  id = params["id"]
+  poll = Poll.all( :conditions => { :id => id })
+  poll.delete(id)
+
+  redirect "/"
+end
