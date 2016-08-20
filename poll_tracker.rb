@@ -6,7 +6,7 @@ require "bcrypt"
 require "data_mapper"
 require "pry"
 
-DataMapper.setup(:default, "sqlite3::memory")
+DataMapper.setup(:default, "sqlite3::memory:")
 
 configure do
   enable :sessions
