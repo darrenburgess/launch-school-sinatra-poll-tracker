@@ -6,7 +6,7 @@ require "bcrypt"
 require "data_mapper"
 require "pry"
 
-DataMapper.setup(:default, "sqlite3::memory:")
+DataMapper.setup(:default, "sqlite3:///data/polls.db")
 
 configure do
   enable :sessions
@@ -26,26 +26,21 @@ class Poll
   property :johnson, Float
 end
 
-
-def test_database
-  Poll.auto_migrate!
+def initialize_database
+  Poll.auto_upgrade!
 
   first_poll = Poll.new
   first_poll.dates = "Aug 14-18"
   first_poll.clinton = 54.3
   first_poll.trump = 48.1
   first_poll.save
-
-  second_poll = Poll.new
-  second_poll.clinton = 54.0
-  second_poll.save
 end
 
-test_database
+initialize_database
 
 get "/" do
   @polls = Poll.all(:order => [:date_end.asc])
-  @poll = Poll.get(1)
+
   erb :index do
     erb :poll_table
   end
