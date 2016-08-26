@@ -17,13 +17,13 @@ class Poll
   include DataMapper::Resource
 
   property :id, Serial
-  property :dates, String
-  property :date_start, Date
-  property :date_end, Date
-  property :pollster, String
-  property :clinton, Float
-  property :trump, Float
-  property :johnson, Float
+  property :dates, String, :required => false
+  property :date_start, Date, :required => false
+  property :date_end, Date, :required => false
+  property :pollster, String, :required => false
+  property :clinton, Float, :required => false
+  property :trump, Float, :required => false
+  property :johnson, Float, :required => false
 end
 
 def initialize_database
@@ -62,8 +62,7 @@ post "/new" do
   poll.trump = trump
   poll.johnson = johnson
 
-  x = poll.save
-  binding.pry
+  poll.save
 
   redirect "/"
 end
